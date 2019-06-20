@@ -104,3 +104,19 @@ export function WpTerms(json) {
     return terms.filter( term => ! exclusions.includes(term.taxonomy) );
   }
 }
+
+export function WpMedia(json) {
+  this.json = json;
+  this.getId = () => {
+    return this.json.id;
+  }
+  this.getHeight = () => {
+    return this.json.media_details.height;
+  }
+  this.getWidth = () => {
+    return this.json.media_details.width;
+  }
+  this.getSize = ( size ) => {
+    return this.json.media_details.sizes[size];
+  }
+}

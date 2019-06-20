@@ -4,6 +4,7 @@ import PostContainer from './containers/PostContainer.jsx';
 import {PostSingle, TypePost} from './components/post.jsx';
 import {CptPortalItemFromPost} from './components/portal.jsx';
 import Header from './templates/header.jsx';
+import PostCreator from './admin/create-post.jsx';
 import './style.css';
 
 class App extends Component {
@@ -24,4 +25,15 @@ class App extends Component {
   }
 }
 
-render(<App />, document.getElementById('root'));
+class App2 extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <PostCreator />
+    )
+  }
+}
+
+render(<App2 />, document.getElementById('root'));
