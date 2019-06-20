@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import PostContainer from './containers/PostContainer.jsx';
 import {PostSingle, TypePost} from './components/post.jsx';
+import Header from './templates/header.jsx';
 import './style.css';
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
   render() {
     return (
       <div>
+      <Header />
         <PostContainer
           id={170171}
           postType={'hair'}
