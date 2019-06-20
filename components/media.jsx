@@ -1,3 +1,5 @@
+import React, {Component} from 'react';
+
 function findMediaApi(postId, postType = 'posts') {
     let postApi = 'https://stealherstyle.net/wp-json/wp/v2/' + postType + '/' + postId;
     return fetch(postApi)
@@ -20,14 +22,30 @@ const MediaContainer = (props) => {
 
 // if ( props.json.media_type === 'image' ) {
 
-const SizedMedia = (json, size = 'large') => {
-    const sizes = json.media_details.sizes;
+
+export const SizedMedia = ({json, size = 'large'}) => {
+ return( 
+    <ImageFromJson
+      json={SizedMediaJson(json, size)}
+    />
+  );
+};
+
+export const SizedMediaJson = (json, size = 'large') => {
+  console.log('complete media json:');
+  console.log(json);
+  const details = json.media_details || {};
+  console.log(details);
+    const sizes = details.sizes || {};
+    console.log(sizes);
     //if ( props.json.media_details.sizes.hasOwnProperty( props.size ) ) {
-    return sizes[size] || sizes.large; //default to size large
+    return sizes[size] || sizes.large || {}; //default to size large
 };
 
 //props: json and alt
-const ImageFromJson = (props) => {
+export const ImageFromJson = (props) => {
+   console.log('sized image json:');
+ console.log(props.json);
     return (
         <img src={props.json.source_url} width={props.json.width} height={props.json.height} alt={props.alt}/>
     )

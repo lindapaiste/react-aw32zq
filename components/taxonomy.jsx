@@ -1,3 +1,4 @@
+import React, {Component} from 'react';
 
 export const CategoryDropdown = () => {
     return (
@@ -32,6 +33,19 @@ const RenderList = (props) => {
     )
 };
 
+const ListItems = ({items, renderItem}) => {
+    return (
+        <ul>
+            {items.map(item => 
+                <li>{renderItem({
+                      json: item,
+                      key: item.id,
+                })}</li>
+            )}
+        </ul>
+    )
+};
+
 export const TermLinkList = (props) => {
     return (
         <RenderList
@@ -42,17 +56,30 @@ export const TermLinkList = (props) => {
     )
 };
 
-export const TermLink = (props) => {
+export const TermList = ({items, before = '', after = '', separator = ''}) => {
+  return (
+null
+  )
+  
+};
+
+export const TermLink = ({json}) => {
     return (
-        <a href={props.json.link}>{props.json.name}</a>
+        <a href={json.link}>{json.name}</a>
     )
 };
 
-export const TermOption = (props) => {
+export const TermName = ({json}) => {
+    return (
+        json.name
+    )
+};
+
+export const TermOption = ({json}) => {
     return (
         <Option
-            value={props.json.id}
-            label={props.json.name}
+            value={json.id}
+            label={json.name}
         />
     )
 };

@@ -1,4 +1,8 @@
-import {TermLink} from './taxonomy.jsx';
+import React, {Component} from 'react';
+import {TermLink, TermName} from './taxonomy.jsx';
+import {SizedMedia} from './media.jsx';
+import WpPostObject from '../helpers/post-json.jsx';
+import {PortalOutfitsInCategory} from './portal.jsx';
 
 export const PostContainer = (props) => {
     //TODO: map post types to endpoints
@@ -15,29 +19,89 @@ export const PostContainer = (props) => {
     )
 };
 
-export const PostSingle = (props) => {
+export const TypePost = (props) => {
+  const post = new WpPostObject(props.json);
+  console.log(post);
     return (
+      <div>
+        <h2 className="celebrity-name-above-photo">
+          <TermLink json={post.category()} />
+        </h2>
+
+<article>	
+		<div className="photo">
+			<div className="main-image">
+				<div className="image-wrapper centered">
+					<a href={post.permalink()}>
+            <SizedMedia json={post.featuredImage()} size={'large'} />
+          </a>
+					<div className="byline">Need To Get Credit</div>
+				</div>
+				
+				
+				<div className="centered">
+         display video, if it exists
+				</div>
+				
+				<div className="tags clearfix">
+          Comments Link
+        </div>
+
+        <div>
+          {post.json.content.rendered}
+        </div>
+            		
+				
+				<div className="tags">
+          {post.allTerms(['category']).map( term => <TermLink json={term} />)}
+        </div>
+      </div>
+		</div>
+				
+    <div className="photo-details clearfix">
+      Related Products			
+		</div>
+</article>
+		<div className="clearer"></div>
+    </div>
+    )
+};
+
+export const PostSingle = (props) => {
+  const post = new WpPostObject(props.json);
+    return (
+      <div>
         <article className="main-column">
             <div className="entry">
                 <div className="ehead centered">
-                    <h2 className="category-name">category goes here</h2>
-                    <h2 className="post-title">{props.json.title.rendered}</h2>
+                    <h2 className="category-name">
+                      <TermName json={post.category()}/>
+                    </h2>
+                    <h2 className="post-title">{post.titleWithoutCategory()}</h2>
                 </div>
                 <div className="post-body narrow">
-                    {props.json._embedded['wp:featuredmedia'].map(json =>
-                        <Caption text="Need to find caption">
-                            <SizeImage json={json} size={large} />
+                    <Caption text="Need to find caption">
+                            <SizedMedia json={post.featuredImage()} size={'large'} />
                         </Caption>
                     )}
                     {props.json.content.rendered}
                     <div className="tags">
-                        {props.json._embedded['wp:term'].map(json =>
-                            <TermLink json={json}/>
-                        )}
+                      Brands: {post.taxonomyTerms('brand').map( term => 
+                        <TermLink json={term} />
+                      )}
+                      Items: {post.taxonomyTerms('item').map( term => 
+                        <TermLink json={term} />
+                      )}
                     </div>
                 </div>
             </div>
         </article>
+        {props.isSingle &&
+        <aside>
+          <PortalOutfitsInCategory id={post.category().id} />
+        </aside>
+        }
+      </div>
     )
 };
 
@@ -75,52 +139,6 @@ export const PostCptUrl = (json) => {
   const category = PostCategory(json);
   const type = json.type;
   return CategoryCptUrl(category, type);
-};
-
-//props: json and size
-export const PortalItemFromPost = (props) => {
-    const category = PostCategory(props.json);
-    const media = PostFeaturedImage(props.json);
-    const sized = SizedMedia(media, props.size || 'thumbnail');
-    const type = props.json.type;
-    const title = category.name + ' ' + type;
-  return (
-      <PortalItem
-          url={CategoryCptUrl(category, type)}
-          //onClick=
-          image={sized}
-          alt={title}
-          text={title}
-      />
-  )
-};
-
-export const PortalItem = (props) => {
-  return (
-      <a
-          href={props.url}
-          onClick={props.onClick}
-      >
-      <div className="portal-image">
-          <img
-              src={props.image.source_url}
-              width={props.image.width}
-              height={props.image.height}
-              alt={props.alt}
-              title={props.alt}
-              //TODO: required width/height with CSS crop, separate element
-          />
-          <div className="portal-txt white">
-              {props.text}
-          </div>
-      </div>
-  </a>
-      )
-};
-
-export const PortalItemImage = (props) => {
-
-  return null;
 };
 
 export const Caption = (props) => {
