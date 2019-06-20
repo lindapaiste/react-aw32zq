@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Hello from './Hello';
-import PostContainer from './api/PostContainer';
-import PostSingle from './PostSingle';
+import PostContainer from './containers/PostContainer.jsx';
+import {PostSingle, TypePost} from './components/post.jsx';
 import './style.css';
 
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      name: 'React'
-    };
   }
 
   render() {
     return (
       <div>
         <PostContainer
-          id={174380}
-          render={PostSingle}
+          id={170171}
+          postType={'hair'}
+          render={TypePost}
         />
       </div>
     );
