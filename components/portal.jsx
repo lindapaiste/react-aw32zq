@@ -71,14 +71,13 @@ export const PortalItem = (props) => {
 
 //props: json and size
 export const CptPortalItemFromPost = (props) => {
-    const category = PostCategory(props.json);
-    const media = PostFeaturedImage(props.json);
-    const sized = SizedMedia(media, props.size || 'thumbnail');
-    const type = props.json.type;
-    const title = category.name + ' ' + type;
+    const post = props.post || new WpPostObject(props.json);
+  const media = post.featuredImage() || {};
+  const sized = post.sizedImage( props.size || 'thumbnail');
+    const title = post.category().name + ' ' + post.postType();
   return (
       <PortalItem
-          url={CategoryCptUrl(category, type)}
+          url={post.cptUrl()}
           //onClick=
           image={sized}
           alt={title}
@@ -90,8 +89,8 @@ export const CptPortalItemFromPost = (props) => {
 //props: json and size
 export const SinglePostPortalItem = (props) => {
   const post = props.post || new WpPostObject(props.json);
-    const media = post.featuredImage() || {};
-    const sized = post.sizedImage( props.size || 'thumbnail');
+  const media = post.featuredImage() || {};
+  const sized = post.sizedImage( props.size || 'thumbnail');
   return (
       <PortalItem
           url={post.json.link}
