@@ -1,4 +1,5 @@
-import WpJsonListContainer from "./WpJsonListContainer";
+import React, {Component} from 'react';
+import WpJsonListContainer from "./WpJsonListContainer.jsx";
 
 //category archive has a category id and an optional post type
 

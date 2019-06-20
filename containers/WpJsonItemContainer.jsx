@@ -1,4 +1,4 @@
-//import React, {Component} from 'react';
+import React, {Component} from 'react';
 import {buildApiUrl} from '../helpers/url-builders';
 
 export default class WpJsonItemContainer extends React.Component {
@@ -48,6 +48,8 @@ export default class WpJsonItemContainer extends React.Component {
 
     render() {
         if (this.state.isLoaded) {
+          console.log('props:');
+          console.log(this.props);
             return this.props.render({
                 json: this.state.json,
                 error: this.state.error,

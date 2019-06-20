@@ -1,4 +1,4 @@
-//import React, {Component} from 'react';
+import React, {Component} from 'react';
 import {buildApiUrl} from '../helpers/url-builders';
 
 
