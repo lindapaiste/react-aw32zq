@@ -67,7 +67,7 @@ export default function WpPostObject(json) {
     this.postType = () => {
       return this.json.type;
     }
-    this.CptUrl = () => {
+    this.cptUrl = () => {
       return CategoryCptUrl( this.category(), this.postType() );
     }
     this.permalink = () => {
