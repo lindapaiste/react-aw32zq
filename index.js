@@ -6,6 +6,7 @@ import {CptPortalItemFromPost} from './components/portal.jsx';
 import Header from './templates/header.jsx';
 import PostCreator from './admin/create-post.jsx';
 import './style.css';
+import Wikipedia from './helpers/wikipedia.jsx';
 
 class App extends Component {
   constructor() {
@@ -15,10 +16,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <PostContainer
-          id={170171}
-          postType={'hair'}
-          render={CptPortalItemFromPost}
+        <Wikipedia 
+        name='Hailey Baldwin'
         />
       </div>
     );
@@ -36,4 +35,4 @@ class App2 extends Component {
   }
 }
 
-render(<App2 />, document.getElementById('root'));
+render(<App />, document.getElementById('root'));
