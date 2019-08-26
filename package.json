@@ -1,18 +1,22 @@
 {
-  "name": "react",
+  "name": "react-native-app",
   "version": "0.0.0",
+  "description": "No description",
+  "author": "Linda Paiste",
   "private": true,
+  "main": "node_modules/expo/AppEntry.js",
   "dependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "react-scripts": "latest"
+    "expo": "^33.0.0",
+    "react": "16.8.3",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "@fortawesome/fontawesome-svg-core": "^1.2.4",
+    "@fortawesome/free-solid-svg-icons": "5.9.0",
+    "@fortawesome/react-fontawesome": "0.1.4",
+    "@fortawesome/react-native-fontawesome": "0.1.0",
+    "react-dom": "16.3.0",
+    "react-native-instagram-embed": "0.0.6",
+    "react-native-paper": "2.15.2",
+    "react-native-webview": "5.12.0",
+    "styled-components": "4.3.2"
   }
 }
