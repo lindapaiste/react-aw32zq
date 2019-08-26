@@ -10,6 +10,7 @@ import Wikipedia from './helpers/wikipedia.jsx';
 
 class App extends Component {
   constructor() {
+    
     super();
   }
 
